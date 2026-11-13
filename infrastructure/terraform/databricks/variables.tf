@@ -1,3 +1,4 @@
+
 variable "workspace_name" {
   description = "Azure Databricks workspace name"
   type        = string
@@ -8,13 +9,18 @@ variable "managed_resource_group_name" {
   type        = string
 }
 
-variable "sku" {
-  description = "Databricks workspace pricing tier"
+variable "access_connector_name" {
+  description = "Azure Databricks Access Connector name"
   type        = string
-  default     = "trial"
+}
+
+variable "sku" {
+  description = "Azure Databricks workspace pricing tier"
+  type        = string
+  default     = "premium"
 
   validation {
-    condition     = contains(["trial", "standard", "premium"], var.sku)
-    error_message = "SKU must be trial, standard or premium."
+    condition     = contains(["premium", "trial"], var.sku)
+    error_message = "SKU must be premium or trial."
   }
 }

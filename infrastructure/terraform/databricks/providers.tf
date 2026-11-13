@@ -1,3 +1,4 @@
+
 terraform {
   required_version = ">= 1.5.0"
 
@@ -9,17 +10,6 @@ terraform {
   }
 }
 
-# Read the Foundation Terraform state
-data "terraform_remote_state" "foundation" {
-  backend = "local"
-
-  config = {
-    path = "../foundation/terraform.tfstate"
-  }
-}
-
 provider "azurerm" {
   features {}
-
-  subscription_id = data.terraform_remote_state.foundation.outputs.subscription_id
 }

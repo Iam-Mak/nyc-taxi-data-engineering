@@ -1,3 +1,4 @@
+
 # Azure Databricks workspace
 resource "azurerm_databricks_workspace" "main" {
   name = var.workspace_name
@@ -8,16 +9,12 @@ resource "azurerm_databricks_workspace" "main" {
   sku                         = var.sku
   managed_resource_group_name = var.managed_resource_group_name
 
-  tags = {
-    project     = "nyc-taxi-data-engineering"
-    environment = "development"
-    managed_by  = "terraform"
-  }
+  tags = data.terraform_remote_state.foundation.outputs.common_tags
 }
 
 # Databricks Access Connector
 resource "azurerm_databricks_access_connector" "main" {
-  name                = "ac-nyc-taxi-databricks"
+  name                = var.access_connector_name
   resource_group_name = data.terraform_remote_state.foundation.outputs.resource_group_name
   location            = data.terraform_remote_state.foundation.outputs.resource_group_location
 
@@ -25,11 +22,7 @@ resource "azurerm_databricks_access_connector" "main" {
     type = "SystemAssigned"
   }
 
-  tags = {
-    project     = "nyc-taxi-data-engineering"
-    environment = "development"
-    managed_by  = "terraform"
-  }
+  tags = data.terraform_remote_state.foundation.outputs.common_tags
 }
 
 # Allow the connector's managed identity to access ADLS Gen2
