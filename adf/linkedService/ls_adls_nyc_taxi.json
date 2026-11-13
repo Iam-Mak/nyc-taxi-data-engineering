@@ -1,0 +1,11 @@
+{
+	"name": "ls_adls_nyc_taxi",
+	"properties": {
+		"description": "References the ADLS Gen2 raw container destination for storing original NYC TLC Yellow Taxi Parquet files without modification.",
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://nyctaxidata2026abc.dfs.core.windows.net/"
+		}
+	}
+}
