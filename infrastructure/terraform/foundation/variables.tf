@@ -1,12 +1,7 @@
-variable "subscription_id" {
-  description = "Azure subscription ID"
-  type        = string
-}
-
 variable "location" {
   description = "Azure region for project infrastructure"
   type        = string
-  default     = "northeurope"
+  default     = "centralindia"
 }
 
 variable "resource_group_name" {

@@ -1,3 +1,4 @@
+
 terraform {
   required_version = ">= 1.5.0"
 
@@ -14,26 +15,8 @@ terraform {
   }
 }
 
-data "terraform_remote_state" "foundation" {
-  backend = "local"
-
-  config = {
-    path = "../foundation/terraform.tfstate"
-  }
-}
-
-data "terraform_remote_state" "databricks" {
-  backend = "local"
-
-  config = {
-    path = "../databricks/terraform.tfstate"
-  }
-}
-
 provider "azurerm" {
   features {}
-
-  subscription_id = data.terraform_remote_state.foundation.outputs.subscription_id
 }
 
 provider "databricks" {

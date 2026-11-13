@@ -1,8 +1,3 @@
-output "subscription_id" {
-  description = "Azure subscription ID"
-  value       = var.subscription_id
-}
-
 output "resource_group_name" {
   description = "Project resource group name"
   value       = azurerm_resource_group.main.name
@@ -31,4 +26,10 @@ output "storage_dfs_endpoint" {
 output "storage_containers" {
   description = "ADLS Gen2 containers"
   value       = [for container in azurerm_storage_container.main : container.name]
+}
+
+
+output "common_tags" {
+  description = "Common tags shared across project infrastructure"
+  value       = local.common_tags
 }

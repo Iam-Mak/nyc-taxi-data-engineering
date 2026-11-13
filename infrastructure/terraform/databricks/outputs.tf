@@ -1,3 +1,4 @@
+
 output "workspace_name" {
   description = "Databricks workspace name"
   value       = azurerm_databricks_workspace.main.name
