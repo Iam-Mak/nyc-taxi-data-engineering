@@ -22,7 +22,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat('yellow_taxi/year=', dataset().p_year, '/month=', dataset().p_month)",
+					"value": "@concat('year=', dataset().p_year, '/month=', dataset().p_month)",
 					"type": "Expression"
 				},
 				"folderPath": "yellow_taxi",
