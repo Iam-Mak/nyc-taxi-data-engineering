@@ -1,0 +1,86 @@
+{
+	"name": "pl_ingest_yellow_taxi_monthly",
+	"properties": {
+		"description": "Ingests monthly NYC TLC Yellow Taxi Parquet files from the public HTTP source into the ADLS Gen2 raw container using parameterised Binary Copy.",
+		"activities": [
+			{
+				"name": "Copy_Yellow_Taxi_To_Raw",
+				"description": "Copies the selected monthly NYC TLC Yellow Taxi Parquet file from the public HTTP source into the ADLS Gen2 raw container without modifying the original file contents.",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.02:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "HttpReadSettings",
+							"requestMethod": "GET",
+							"requestTimeout": "00:01:00"
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings",
+							"copyBehavior": "PreserveHierarchy"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_http_yellow_taxi_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_year": {
+								"value": "@pipeline().parameters.p_year",
+								"type": "Expression"
+							},
+							"p_month": {
+								"value": "@pipeline().parameters.p_month",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_adls_yellow_taxi_raw_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"p_year": {
+								"value": "@pipeline().parameters.p_year",
+								"type": "Expression"
+							},
+							"p_month": {
+								"value": "@pipeline().parameters.p_month",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"p_year": {
+				"type": "string",
+				"defaultValue": "2025"
+			},
+			"p_month": {
+				"type": "string",
+				"defaultValue": "01"
+			}
+		},
+		"annotations": []
+	}
+}

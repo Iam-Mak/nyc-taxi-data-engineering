@@ -1,0 +1,33 @@
+{
+	"name": "ds_adls_yellow_taxi_raw_binary",
+	"properties": {
+		"description": "References the ADLS Gen2 raw container for storing original NYC TLC Yellow Taxi Parquet files using parameterised year and month folder paths, without modifying the source data.",
+		"linkedServiceName": {
+			"referenceName": "ls_adls_nyc_taxi",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_year": {
+				"type": "string",
+				"defaultValue": "2025"
+			},
+			"p_month": {
+				"type": "string",
+				"defaultValue": "01"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat('yellow_taxi/year=', dataset().p_year, '/month=', dataset().p_month)",
+					"type": "Expression"
+				},
+				"folderPath": "yellow_taxi",
+				"fileSystem": "raw"
+			}
+		}
+	}
+}

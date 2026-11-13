@@ -1,6 +1,7 @@
 {
 	"name": "ds_http_yellow_taxi_binary",
 	"properties": {
+		"description": "References the public NYC TLC Yellow Taxi Parquet files through an HTTP linked service, using parameterised year and month values to dynamically construct the source file URL for monthly ingestion.",
 		"linkedServiceName": {
 			"referenceName": "ls_http_nyc_tlc",
 			"type": "LinkedServiceReference"
