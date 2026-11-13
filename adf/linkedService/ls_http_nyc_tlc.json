@@ -1,0 +1,13 @@
+{
+	"name": "ls_http_nyc_tlc",
+	"properties": {
+		"description": "HTTP connection to public NYC TLC trip data",
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://d37ci6vzurychx.cloudfront.net",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
