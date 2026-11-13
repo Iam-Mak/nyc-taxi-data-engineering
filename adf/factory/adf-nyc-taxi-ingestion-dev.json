@@ -1,0 +1,15 @@
+{
+	"name": "adf-nyc-taxi-ingestion-dev",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "70692caf-5660-4cb4-8d15-bac078bea988",
+		"tenantId": "42bb58f6-6187-4c84-b44f-17017cf73761"
+	}
+}
