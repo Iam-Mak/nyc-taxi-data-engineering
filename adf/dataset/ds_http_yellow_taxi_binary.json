@@ -1,0 +1,30 @@
+{
+	"name": "ds_http_yellow_taxi_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_nyc_tlc",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_year": {
+				"type": "string",
+				"defaultValue": "2025"
+			},
+			"p_month": {
+				"type": "string",
+				"defaultValue": "01"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@concat(\n    '/trip-data/yellow_tripdata_',\n    dataset().p_year,\n    '-',\n    dataset().p_month,\n    '.parquet'\n)",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
